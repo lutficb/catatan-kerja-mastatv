@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Catatan extends Migration
+class Jobdes extends Migration
 {
     public function up()
     {
@@ -15,25 +15,13 @@ class Catatan extends Migration
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
-            'user_id' => [
-                'type'              => 'INT',
-                'constraint'        => 11,
-                'unsigned'          => true,
+            'name' => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
             ],
-            'waktu_catatan' => [
-                'type'              => 'datetime',
-            ],
-            'deskripsi_catatan' => [
-                'type'              => 'TEXT',
-                'null'              => true,
-            ],
-            'deskripsi_permasalahan' => [
-                'type'              => 'TEXT',
-                'null'              => true,
-            ],
-            'deskripsi_solusi' => [
-                'type'              => 'TEXT',
-                'null'              => true,
+            'deskripsi' => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
             ],
             'created_at' => [
                 'type'              => 'DATETIME',
@@ -49,12 +37,11 @@ class Catatan extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('user_id', 'users', 'id', '', 'CASCADE');
-        $this->forge->createTable('catatan');
+        $this->forge->createTable('jobdes');
     }
 
     public function down()
     {
-        $this->forge->dropTable('catatan');
+        $this->forge->dropTable('jobdes');
     }
 }
