@@ -22,7 +22,7 @@ class UserModel extends ShieldUserModel
     public function getAllUser()
     {
         $builder = new ShieldUserModel();
-        $builder->select('users.id as userId, username, group, active');
+        $builder->select('users.id as userId, name, group, active');
         $builder->join('auth_groups_users', 'auth_groups_users.user_id = users.id');
         $result = $builder->get()->getResultArray();
         return $result;

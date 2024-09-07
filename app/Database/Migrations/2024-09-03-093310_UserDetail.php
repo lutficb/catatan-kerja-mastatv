@@ -20,10 +20,6 @@ class UserDetail extends Migration
                 'constraint'        => 11,
                 'unsigned'          => true,
             ],
-            'nama' => [
-                'type'              => 'VARCHAR',
-                'constraint'        => 255,
-            ],
             'tempat_lahir' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
@@ -54,11 +50,12 @@ class UserDetail extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('user_id', 'users', 'id', '', 'CASCADE');
-        $this->forge->createTable('user_detail');
+        $this->forge->createTable('users_detail');
     }
 
     public function down()
     {
-        $this->forge->dropTable('user_detail');
+        $this->forge->dropForeignKey('user_detail', 'user_detail_user_id_foreign');
+        $this->forge->dropTable('users_detail');
     }
 }

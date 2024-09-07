@@ -55,6 +55,7 @@ class Catatan extends Migration
 
     public function down()
     {
+        $this->forge->dropForeignKey('catatan', 'catatan_user_id_foreign');
         $this->forge->dropTable('catatan');
     }
 }

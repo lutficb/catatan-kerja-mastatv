@@ -20,9 +20,10 @@ class Users extends BaseController
         $users = $this->userModel->getAllUser();
 
         $data = [
+            'title' => 'Halaman Users',
             'users' => $users,
         ];
 
-        return view('layout/blank-page', $data);
+        return view('admin/users', $data);
     }
 }
