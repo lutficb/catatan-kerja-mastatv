@@ -9,6 +9,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 // Route Users
-$routes->get('users', [Users::class, 'index']);
+$routes->get('admin/users', [Users::class, 'index']);
+$routes->post('admin/addNewUserAction', [Users::class, 'addNewUser']);
 
 service('auth')->routes($routes);

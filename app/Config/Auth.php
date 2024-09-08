@@ -441,6 +441,14 @@ class Auth extends ShieldAuth
         $session = session();
         $url     = $session->getTempdata('beforeLoginUrl') ?? setting('Auth.redirects')['login'];
 
+        if (auth()->user()->inGroup('admin')) {
+            return '/admin/users';
+        } elseif (auth()->user()->inGroup('verificator')) {
+            return '/';
+        } else {
+            return '/anggota';
+        }
+
         return $this->getUrl($url);
     }
 

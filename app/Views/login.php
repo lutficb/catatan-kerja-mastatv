@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login Anggota</title>
+    <title>Halaman Login</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="template/dist/assets/vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="template/dist/assets/vendors/flag-icon-css/css/flag-icons.min.css">
@@ -18,7 +18,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="template/dist/assets/css/vertical-light-layout/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="template/dist/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="img/logo-mastatv-head.png" />
 </head>
 
 <body>
