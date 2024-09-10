@@ -5,8 +5,65 @@
     <div class="col-xl-8 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Dafar Pengguna App</h4>
-                <button type="button" class="btn btn-success btn-sm mb-2 btn-icon-text" data-bs-toggle="modal" data-bs-target="#newUserModal"><i class="icon-plus btn-icon-prepend"></i> Pengguna Baru</button>
+                <h4 class="card-title">Add New User</h4>
+                <div>
+                    <?= validation_list_errors() ?>
+
+                    <?= form_open('admin/users', 'class="sample-form"') ?>
+                    <div class="form-group row">
+                        <?= form_label('Username', 'username', ['class' => 'col-sm-2 col-form-label']); ?>
+                        <div class="col-sm-5">
+                            <?php
+                            $usernameData = [
+                                'type'  => 'text',
+                                'name'  => 'username',
+                                'id'    => 'username',
+                                'value' => old('username'),
+                                'class' => 'form-control form-control-sm',
+                                'placeholder' => 'Username'
+                            ];
+                            echo form_input($usernameData);
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <?= form_label('Nama', 'name', ['class' => 'col-sm-2 col-form-label']); ?>
+                        <div class="col-sm-5">
+                            <?php
+                            $nameData = [
+                                'type'  => 'text',
+                                'name'  => 'name',
+                                'id'    => 'name',
+                                'value' => old('name'),
+                                'class' => 'form-control form-control-sm',
+                                'placeholder' => 'Nama Lengkap'
+                            ];
+                            echo form_input($nameData);
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <?= form_label('Password', 'password', ['class' => 'col-sm-2 col-form-label']); ?>
+                        <div class="col-sm-5">
+                            <?php
+                            $passwordData = [
+                                'type'  => 'password',
+                                'name'  => 'password',
+                                'id'    => 'password',
+                                'value' => old('password'),
+                                'class' => 'form-control form-control-sm',
+                                'placeholder' => 'Password Minimal 8 karakter'
+                            ];
+                            echo form_input($passwordData);
+                            ?>
+                        </div>
+                    </div>
+                    <?= form_submit('adduser', 'Save', ['class' => 'btn btn-success me-2 btn-sm']); ?>
+                    <?= form_close() ?>
+                </div>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">List Of Users</h4>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="thead-dark text-center">
@@ -91,43 +148,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form action="<?= base_url(); ?>/admin/addNewUserAction" method="post" class="forms-sample">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="newUserModalLabel">Tambah User Baru</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label for="exampleInputUsername1">Username</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                        <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-icon-text" data-bs-dismiss="modal"><i class="icon-close btn-icon-prepend"></i>Tutup</button>
-                    <button type="submit" class="btn btn-success btn-icon-text"><i class="icon-doc btn-icon-prepend"></i>Simpan</button>
-                </div>
-            </div>
-        </form>
     </div>
 </div>
 

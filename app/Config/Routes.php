@@ -10,6 +10,6 @@ $routes->get('/', 'Home::index');
 
 // Route Users
 $routes->get('admin/users', [Users::class, 'index']);
-$routes->post('admin/addNewUserAction', [Users::class, 'addNewUser']);
+$routes->post('admin/users', [Users::class, 'addNewUser']);
 
 service('auth')->routes($routes);
