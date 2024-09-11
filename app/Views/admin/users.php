@@ -7,7 +7,20 @@
             <div class="card-body">
                 <h4 class="card-title">Add New User</h4>
                 <div>
-                    <?= validation_list_errors() ?>
+                    <?php $errors = validation_errors(); ?>
+                    <?php if (! empty($errors)): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                <?php foreach ($errors as $error): ?>
+                                    <li><?= esc($error) ?></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                    <?php endif ?>
+
+                    <?php if (session('success') !== null) : ?>
+                        <div class="alert alert-success" role="alert"><?= session('success') ?></div>
+                    <?php endif ?>
 
                     <?= form_open('admin/users', 'class="sample-form"') ?>
                     <div class="form-group row">
@@ -23,6 +36,22 @@
                                 'placeholder' => 'Username'
                             ];
                             echo form_input($usernameData);
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <?= form_label('Email', 'email', ['class' => 'col-sm-2 col-form-label']); ?>
+                        <div class="col-sm-5">
+                            <?php
+                            $emailData = [
+                                'type'  => 'email',
+                                'name'  => 'email',
+                                'id'    => 'email',
+                                'value' => old('email'),
+                                'class' => 'form-control form-control-sm',
+                                'placeholder' => 'Ex: fulan@gmail.com'
+                            ];
+                            echo form_input($emailData);
                             ?>
                         </div>
                     </div>
@@ -58,12 +87,15 @@
                             ?>
                         </div>
                     </div>
-                    <?= form_submit('adduser', 'Save', ['class' => 'btn btn-success me-2 btn-sm']); ?>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Add User</button>
                     <?= form_close() ?>
                 </div>
             </div>
             <div class="card-body">
                 <h4 class="card-title">List Of Users</h4>
+                <?php if (session('message') !== null) : ?>
+                    <div class="alert alert-success" role="alert"><?= session('message') ?></div>
+                <?php endif ?>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="thead-dark text-center">
@@ -85,10 +117,10 @@
                                     <td><?= $user['active']; ?></td>
                                     <td>
                                         <div class="edit-user" style="display: inline;">
-                                            <a href="" class="btn btn-sm btn-primary" title="Edit data pengguna" target="_blank"><i class="fa fa-edit"></i></a>
+                                            <a href="" class="btn btn-sm btn-primary" title="Edit data pengguna"><i class="fa fa-edit"></i></a>
                                         </div>
                                         <div class="delete-user" style="display: inline;">
-                                            <a href="" class="btn btn-sm btn-danger" title="Hapus pengguna" target="_blank"><i class="fa fa-trash-o"></i></a>
+                                            <a href="<?= base_url(); ?>admin/deleteUser/<?= $user['userId']; ?>" class="btn btn-sm btn-danger" title="Hapus pengguna"><i class="fa fa-trash-o"></i></a>
                                         </div>
                                     </td>
                                 </tr>

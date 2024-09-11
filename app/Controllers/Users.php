@@ -32,7 +32,8 @@ class Users extends BaseController
 
         $userData = [
             'username' => $this->request->getPost('username'),
-            'name'  => $this->request->getPost('nama'),
+            'name'  => $this->request->getPost('name'),
+            'email' => $this->request->getPost('email'),
             'password' => $this->request->getPost('password'),
         ];
 
@@ -42,13 +43,16 @@ class Users extends BaseController
                 'rules'  => 'required|max_length[30]|is_unique[users.username]',
                 'errors' => [
                     'required' => 'All accounts must have {field} provided',
+                    'is_unique' => '{field} has been taken by another user',
+                    'max_length' => 'Your {field} is too long.',
                 ],
             ],
-            'password' => [
-                'label'  => 'Password',
-                'rules'  => 'required|max_length[255]|min_length[10]',
+            'email' => [
+                'label'  => 'Email',
+                'rules'  => 'required|max_length[254]|valid_email',
                 'errors' => [
-                    'min_length' => 'Your {field} is too short. You want to get hacked?',
+                    'required' => 'All accounts must have {field} provided',
+                    'valid_email' => 'Your {field} is not a valid email address',
                 ],
             ],
             'name' => [
@@ -56,6 +60,13 @@ class Users extends BaseController
                 'rules'  => 'required|max_length[30]',
                 'errors' => [
                     'required' => 'All accounts must have {field} provided',
+                ],
+            ],
+            'password' => [
+                'label'  => 'Password',
+                'rules'  => 'required|max_length[255]|min_length[8]',
+                'errors' => [
+                    'min_length' => 'Your {field} is too short. You want to get hacked?',
                 ],
             ],
         ];
@@ -69,7 +80,7 @@ class Users extends BaseController
 
         $newUser = new User([
             'username'  => $userData['username'],
-            'email'     => '',
+            'email'     => $userData['email'],
             'password'  => $userData['password'],
             'name'      => $userData['name'],
             'photo'     => 'default-user.png',
@@ -79,38 +90,37 @@ class Users extends BaseController
         // To get the complete user object with ID, we need to get from the database
         $user = $users->findById($users->getInsertID());
 
+        // Activate user
+        $user->activate();
+
         // Add to default group
         $users->addToDefaultGroup($user);
 
+        // Persiapkan data session untuk dikirim ke halaman
         session()->setFlashdata('success', 'User baru berhasil ditambahkan.');
 
         return redirect()->to('admin/users');
     }
 
-    public function addNewUsers()
+    public function activateUser($id)
     {
-        $username = $this->request->getVar('username');
-        $nama = $this->request->getVar('nama');
-        $password = $this->request->getVar('password');
-
-        // Get the User Provider (UserModel by default)
         $users = auth()->getProvider();
+        $user = $users->findById($id);
 
-        $newUser = new User([
-            'username'  => $username,
-            'email'     => '',
-            'password'  => $password,
-            'name'      => $nama,
-            'photo'     => 'default-user.png',
-        ]);
-        $users->save($newUser);
+        $user->activate();
 
-        // To get the complete user object with ID, we need to get from the database
-        $user = $users->findById($users->getInsertID());
+        session()->setFlashdata('message', 'User berhasil diaktifkan');
 
-        // Add to default group
-        $users->addToDefaultGroup($user);
+        return redirect()->to('admin/users');
+    }
 
-        redirect()->to('admin/users')->withInput();
+    public function deleteUser($id)
+    {
+        $users = auth()->getProvider();
+        $users->delete($id, true);
+
+        session()->setFlashdata('message', 'User berhasil dihapus');
+
+        return redirect()->to('admin/users');
     }
 }
