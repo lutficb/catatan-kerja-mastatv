@@ -12,6 +12,12 @@
                 <i class="icon-people menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="template/dist/index.html">
+                <span class="menu-title">Jobdes</span>
+                <i class="icon-folder menu-icon"></i>
+            </a>
+        </li>
         <li class="nav-item nav-category"><span class="nav-link">Verificator</span></li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

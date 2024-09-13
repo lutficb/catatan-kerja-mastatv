@@ -19,24 +19,37 @@ class Users extends BaseController
 
     public function index()
     {
+        // Get all user from database
         $users = $this->userModel->getAllUser();
 
+        // Specifie badge color to user depending on their role
+        $badge = [
+            'admin' => 'badge-success',
+            'verificator' => 'badge-warning',
+            'anggota' => 'badge-primary'
+        ];
+
+        // Data will send to users page
         $data = [
             'title' => 'Halaman Users',
             'users' => $users,
+            'badge' => $badge
         ];
 
+        // Check if the request from user is post method or not
         if (! $this->request->is('post')) {
             return view('admin/users', $data);
         }
 
+        // Catch data from input user or from post methon
         $userData = [
             'username' => $this->request->getPost('username'),
             'name'  => $this->request->getPost('name'),
             'email' => $this->request->getPost('email'),
-            'password' => $this->request->getPost('password'),
+            'group' => $this->request->getPost('group'),
         ];
 
+        // The rules of the validation
         $rules = [
             'username' => [
                 'label'  => 'Username',
@@ -62,17 +75,16 @@ class Users extends BaseController
                     'required' => 'All accounts must have {field} provided',
                 ],
             ],
-            'password' => [
-                'label'  => 'Password',
-                'rules'  => 'required|max_length[255]|min_length[8]',
-                'errors' => [
-                    'min_length' => 'Your {field} is too short. You want to get hacked?',
-                ],
+            'group' => [
+                'label'  => 'Group',
+                'rules'  => 'required',
             ],
         ];
 
+        // Check if data form users is match with validation rules
         if (!$this->validateData($userData, $rules)) {
 
+            // If data not pass the validation, page will back to user page with error from validation
             return redirect()->back()->withInput();
         }
 
@@ -81,7 +93,7 @@ class Users extends BaseController
         $newUser = new User([
             'username'  => $userData['username'],
             'email'     => $userData['email'],
-            'password'  => $userData['password'],
+            'password'  => 'admin1234',
             'name'      => $userData['name'],
             'photo'     => 'default-user.png',
         ]);
@@ -93,12 +105,13 @@ class Users extends BaseController
         // Activate user
         $user->activate();
 
-        // Add to default group
-        $users->addToDefaultGroup($user);
+        // Add group to user
+        $user->addGroup($userData['group']);
 
         // Persiapkan data session untuk dikirim ke halaman
         session()->setFlashdata('success', 'User baru berhasil ditambahkan.');
 
+        // Back to users page with message success input data
         return redirect()->to('admin/users');
     }
 

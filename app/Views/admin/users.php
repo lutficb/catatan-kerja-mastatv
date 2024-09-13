@@ -72,18 +72,21 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <?= form_label('Password', 'password', ['class' => 'col-sm-2 col-form-label']); ?>
+                        <?= form_label('Group', 'group', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-5">
                             <?php
-                            $passwordData = [
-                                'type'  => 'password',
-                                'name'  => 'password',
-                                'id'    => 'password',
-                                'value' => old('password'),
-                                'class' => 'form-control form-control-sm',
-                                'placeholder' => 'Password Minimal 8 karakter'
+                            $options = [
+                                'admin' => 'Admin',
+                                'verificator' => 'Verificator',
+                                'anggota' => 'Anggota',
                             ];
-                            echo form_input($passwordData);
+
+                            $groupData = [
+                                'name'  => 'group',
+                                'id'    => 'group',
+                                'class' => 'form-select form-select-sm'
+                            ];
+                            echo form_dropdown('group', $options, 'anggota', $groupData);
                             ?>
                         </div>
                     </div>
@@ -113,8 +116,14 @@
                                 <tr class="text-center">
                                     <td><?= $i++; ?></td>
                                     <td><?= $user['name']; ?></td>
-                                    <td><?= $user['group']; ?></td>
-                                    <td><?= $user['active']; ?></td>
+                                    <td>
+                                        <div class="badge p-2 <?= $badge[$user['group']]; ?>">
+                                            <?= ucfirst($user['group']); ?>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="badge p-2 <?= ($user['active'] == 1 ? 'badge-info' : 'badge-secondary'); ?>"><?= ($user['active'] == 1 ? 'Aktif' : 'Non-Aktif'); ?></div>
+                                    </td>
                                     <td>
                                         <div class="edit-user" style="display: inline;">
                                             <a href="" class="btn btn-sm btn-primary" title="Edit data pengguna"><i class="fa fa-edit"></i></a>
@@ -134,11 +143,10 @@
     <div class="col-xl-4 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="d-sm-flex align-items-center">
+                <div class="d-sm-flex mb-4 align-items-center">
                     <h4 class="card-title mb-0">Latest Activity</h4>
-                    <a href="#" class="btn btn-outline-info border-0 font-weight-semibold ms-auto p-0 btn-no-hover-bg">View more</a>
                 </div>
-                <div class="d-flex mt-4 py-3 border-bottom">
+                <div class="d-flex py-3 border-bottom">
                     <img class="img-sm rounded-circle" src="<?= base_url(); ?>/template/dist/assets/images/faces/face3.jpg" alt="profile image">
                     <div class="wrapper ms-2">
                         <p class="mb-1 font-weight-medium">Mobile Apps Redesign</p>
