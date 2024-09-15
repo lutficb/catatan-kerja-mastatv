@@ -444,7 +444,7 @@ class Auth extends ShieldAuth
         if (auth()->user()->inGroup('admin')) {
             return '/admin/users';
         } elseif (auth()->user()->inGroup('verificator')) {
-            return '/';
+            return '/verificator';
         } else {
             return '/anggota';
         }
