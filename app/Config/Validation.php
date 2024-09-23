@@ -74,4 +74,38 @@ class Validation extends BaseConfig
             ]
         ],
     ];
+
+    //--------------------------------------------------------------------
+    // Rules For Add New User
+    //--------------------------------------------------------------------
+    public $user_rules = [
+            'username' => [
+                'label'  => 'Username',
+                'rules'  => 'required|max_length[30]|is_unique[users.username]',
+                'errors' => [
+                    'required' => 'All accounts must have {field} provided',
+                    'is_unique' => '{field} has been taken by another user',
+                    'max_length' => 'Your {field} is too long.',
+                ],
+            ],
+            'email' => [
+                'label'  => 'Email',
+                'rules'  => 'required|max_length[254]|valid_email',
+                'errors' => [
+                    'required' => 'All accounts must have {field} provided',
+                    'valid_email' => 'Your {field} is not a valid email address',
+                ],
+            ],
+            'name' => [
+                'label'  => 'Name',
+                'rules'  => 'required|max_length[30]',
+                'errors' => [
+                    'required' => 'All accounts must have {field} provided',
+                ],
+            ],
+            'group' => [
+                'label'  => 'Group',
+                'rules'  => 'required',
+            ],
+        ];
 }

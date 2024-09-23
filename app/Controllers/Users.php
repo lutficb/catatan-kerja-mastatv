@@ -49,40 +49,8 @@ class Users extends BaseController
             'group' => $this->request->getPost('group'),
         ];
 
-        // The rules of the validation
-        $rules = [
-            'username' => [
-                'label'  => 'Username',
-                'rules'  => 'required|max_length[30]|is_unique[users.username]',
-                'errors' => [
-                    'required' => 'All accounts must have {field} provided',
-                    'is_unique' => '{field} has been taken by another user',
-                    'max_length' => 'Your {field} is too long.',
-                ],
-            ],
-            'email' => [
-                'label'  => 'Email',
-                'rules'  => 'required|max_length[254]|valid_email',
-                'errors' => [
-                    'required' => 'All accounts must have {field} provided',
-                    'valid_email' => 'Your {field} is not a valid email address',
-                ],
-            ],
-            'name' => [
-                'label'  => 'Name',
-                'rules'  => 'required|max_length[30]',
-                'errors' => [
-                    'required' => 'All accounts must have {field} provided',
-                ],
-            ],
-            'group' => [
-                'label'  => 'Group',
-                'rules'  => 'required',
-            ],
-        ];
-
-        // Check if data form users is match with validation rules
-        if (!$this->validateData($userData, $rules)) {
+        // Check if data form users is match with validation rules. Rules saved in Config/Validation
+        if (!$this->validateData($userData, 'user_rules')) {
 
             // If data not pass the validation, page will back to user page with error from validation
             return redirect()->back()->withInput();
