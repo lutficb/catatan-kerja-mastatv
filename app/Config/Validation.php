@@ -74,4 +74,6 @@ class Validation extends BaseConfig
             ]
         ],
     ];
+
+    public $catatan = [];
 }
