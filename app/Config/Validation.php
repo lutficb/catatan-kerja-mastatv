@@ -7,6 +7,7 @@ use CodeIgniter\Validation\StrictRules\CreditCardRules;
 use CodeIgniter\Validation\StrictRules\FileRules;
 use CodeIgniter\Validation\StrictRules\FormatRules;
 use CodeIgniter\Validation\StrictRules\Rules;
+use \App\Validation\MyCustomRules;
 
 class Validation extends BaseConfig
 {
@@ -25,6 +26,7 @@ class Validation extends BaseConfig
         FormatRules::class,
         FileRules::class,
         CreditCardRules::class,
+        MyCustomRules::class,
     ];
 
     /**
@@ -79,33 +81,79 @@ class Validation extends BaseConfig
     // Rules For Add New User
     //--------------------------------------------------------------------
     public $user_rules = [
-            'username' => [
-                'label'  => 'Username',
-                'rules'  => 'required|max_length[30]|is_unique[users.username]',
-                'errors' => [
-                    'required' => 'All accounts must have {field} provided',
-                    'is_unique' => '{field} has been taken by another user',
-                    'max_length' => 'Your {field} is too long.',
-                ],
+        'username' => [
+            'label'  => 'Username',
+            'rules'  => 'required|max_length[30]|is_unique[users.username]',
+            'errors' => [
+                'required' => 'All accounts must have {field} provided',
+                'is_unique' => '{field} has been taken by another user',
+                'max_length' => 'Your {field} is too long.',
             ],
-            'email' => [
-                'label'  => 'Email',
-                'rules'  => 'required|max_length[254]|valid_email',
-                'errors' => [
-                    'required' => 'All accounts must have {field} provided',
-                    'valid_email' => 'Your {field} is not a valid email address',
-                ],
+        ],
+        'email' => [
+            'label'  => 'Email',
+            'rules'  => 'required|max_length[254]|valid_email',
+            'errors' => [
+                'required' => 'All accounts must have {field} provided',
+                'valid_email' => 'Your {field} is not a valid email address',
             ],
-            'name' => [
-                'label'  => 'Name',
-                'rules'  => 'required|max_length[30]',
-                'errors' => [
-                    'required' => 'All accounts must have {field} provided',
-                ],
+        ],
+        'name' => [
+            'label'  => 'Name',
+            'rules'  => 'required|max_length[30]',
+            'errors' => [
+                'required' => 'All accounts must have {field} provided',
             ],
-            'group' => [
-                'label'  => 'Group',
-                'rules'  => 'required',
+        ],
+        'group' => [
+            'label'  => 'Group',
+            'rules'  => 'required',
+        ],
+    ];
+
+    //--------------------------------------------------------------------
+    // Rules For Add New Catatan
+    //--------------------------------------------------------------------
+    public $catatan_rules = [
+        'waktu_catatan' => [
+            'label' => 'Tanggal Pekerjaan',
+            'rules' => [
+                'required',
+                'dateValidation'
             ],
-        ];
+            'errors' => [
+                'required' => '{field} harus dipilih sesuai tanggal pekerjaan dikerjakan.',
+                'dateValidation' => '{field} maksimal hari ini. Esok hari masih belum terjadi.'
+            ],
+        ],
+        'deskripsi_catatan' => [
+            'label' => 'Detail Pekerjaan',
+            'rules' => [
+                'required',
+                'min_length[20]'
+            ],
+            'errors' => [
+                'required' => '{field} harus diisi sedetail mungkin.',
+                'min_length' => '{field} yang anda jabarkan terlalu singkat.',
+            ],
+        ],
+        'deskripsi_permasalahan' => [
+            'label' => 'Permasalahan',
+            'rules' => [
+                'required',
+            ],
+            'errors' => [
+                'required' => 'Kolom {field} harus diisi. Jika tidak ada permasalahan, isi dengan tanda -.'
+            ],
+        ],
+        'deskripsi_solusi' => [
+            'label' => 'Solusi',
+            'rules' => [
+                'required'
+            ],
+            'errors' => [
+                'required' => 'Kolom {field} harus diisi. Jika tidak ada solusi karena tidak ada permasalahan, isi dengan tanda -.'
+            ],
+        ],
+    ];
 }

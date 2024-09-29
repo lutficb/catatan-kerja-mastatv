@@ -11,10 +11,9 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="<?= base_url(); ?>/template/dist/assets/vendors/font-awesome/css/font-awesome.min.css" />
     <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="<?= base_url(); ?>/template/dist/assets/css/vertical-light-layout/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="<?= base_url(); ?>/img/logo-mastatv-head.png" />
+
 </head>
