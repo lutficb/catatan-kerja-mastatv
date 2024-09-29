@@ -20,4 +20,13 @@ class CatatanModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+
+    public function getAllCatatan($userId)
+    {
+        $builder = $this->db->table('catatan');
+        $builder->getWhere(['user_id' => $userId]);
+        $result = $builder->get()->getResultArray();
+
+        return $result;
+    }
 }

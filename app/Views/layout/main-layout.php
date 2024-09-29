@@ -2,6 +2,8 @@
 <html lang="en">
 
 <?= $this->include('layout/head'); ?>
+<!-- Custom style css -->
+<?= $this->renderSection('style'); ?>
 
 <body>
     <div class="container-scroller">
@@ -28,6 +30,8 @@
     <!-- container-scroller -->
     <!-- plugins:js -->
     <?= $this->include('layout/script'); ?>
+    <!-- Page Specific JS File -->
+    <?= $this->renderSection('script');  ?>
 </body>
 
 </html>

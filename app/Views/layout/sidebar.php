@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item navbar-brand-mini-wrapper">
-            <a class="nav-link navbar-brand brand-logo-mini" href="#"><img src="img/logo-mastatv-light.svg" alt="logo" /></a>
+            <a class="nav-link navbar-brand brand-logo-mini" href="#"><img src="<?= base_url(); ?>img/logo-mastatv-light.svg" alt="logo" /></a>
         </li>
         <!-- Admin sidebar. Only user as admin can access this menu -->
         <?php if (auth()->user()->inGroup('admin')): ?>

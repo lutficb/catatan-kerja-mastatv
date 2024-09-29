@@ -22,6 +22,10 @@ $routes->group('admin', ['filter' => 'group:admin'], function ($routes) {
 // Route Anggota, only user in group anggota can access
 $routes->group('anggota', ['filter' => 'group:anggota'], function ($routes) {
     $routes->get('/', [Anggota::class, 'index']);
+    $routes->post('upload-image-article', [Anggota::class, 'uploadImgArticle']);
+    $routes->post('delete-image-article', [Anggota::class, 'deleteImgArticle']);
+    $routes->get('tambah-catatan-baru', [Anggota::class, 'addNewCatatan']);
+    $routes->post('tambah-catatan-baru', [Anggota::class, 'addNewCatatan']);
 });
 
 service('auth')->routes($routes);
