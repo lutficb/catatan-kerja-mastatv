@@ -16,7 +16,7 @@
                      <img class="img-xs rounded-circle ms-2" src="<?= base_url(); ?>/img/<?= auth()->user()->photo; ?>" alt="Profile image"> <span class="font-weight-normal"><?= auth()->user()->name; ?></span></a>
                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                      <div class="dropdown-header text-center">
-                         <img class="img-md img-fluid rounded-circle" src="<?= base_url(); ?>/img/<?= auth()->user()->photo; ?>" alt="Profile image">
+                         <img class="img-md img-fluid rounded-circle" src="<?= base_url(); ?>img/<?= auth()->user()->photo; ?>" alt="Profile image">
                          <p class="mb-1 mt-3"><?= auth()->user()->username; ?></p>
                          <p class="font-weight-light text-muted mb-0"><?= auth()->user()->email; ?></p>
                      </div>

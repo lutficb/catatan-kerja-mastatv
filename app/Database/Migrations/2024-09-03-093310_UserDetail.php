@@ -55,7 +55,7 @@ class UserDetail extends Migration
 
     public function down()
     {
-        $this->forge->dropForeignKey('user_detail', 'user_detail_user_id_foreign');
+        $this->forge->dropForeignKey('users_detail', 'users_detail_user_id_foreign');
         $this->forge->dropTable('users_detail');
     }
 }
