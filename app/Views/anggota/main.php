@@ -57,10 +57,7 @@
                                     </td>
                                     <td>
                                         <div class="edit-user" style="display: inline;">
-                                            <a href="" class="btn btn-sm btn-info" title="Edit catatan"><i class="fa fa-edit"></i></a>
-                                        </div>
-                                        <div class="delete-user" style="display: inline;">
-                                            <a href="" class="btn btn-sm btn-danger" title="Hapus catatan"><i class="fa fa-trash-o"></i></a>
+                                            <a href="<?= base_url(); ?>anggota/edit-catatan/<?= $item['id']; ?>" class="btn btn-sm btn-info" title="Edit catatan"><i class="fa fa-edit"></i></a>
                                         </div>
                                     </td>
                                 </tr>

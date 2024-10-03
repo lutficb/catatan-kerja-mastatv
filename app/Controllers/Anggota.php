@@ -87,6 +87,50 @@ class Anggota extends BaseController
         return redirect()->to('anggota');
     }
 
+    public function editCatatan($catatanId)
+    {
+        // get data catatan from database
+        $catatan = $this->catatanModel->find($catatanId);
+
+        // prepare data for "Add New Catatan Kerja" page
+        $data = [
+            'title' => 'Edit Catatan Kerja',
+            'leftsubtitle' => 'Statistik',
+            'rightsubtitle' => 'Form Edit Catatan',
+            'catatan' => $catatan
+        ];
+
+        // Check if method request is post or not, if not return to Add New Catatan page
+        if (! $this->request->is('post')) {
+            return view('anggota/edit-catatan', $data);
+        }
+
+        // Catch data from user request form
+        $catatanData = [
+            'id' => $catatanId,
+            'waktu_catatan' => $this->request->getPost('waktu_catatan'),
+            'deskripsi_catatan' => $this->request->getPost('note'),
+            'deskripsi_permasalahan' => $this->request->getPost('note_problem'),
+            'deskripsi_solusi' => $this->request->getPost('solution')
+        ];
+
+        // Check if data form users is match with validation rules
+        if (!$this->validateData($catatanData, 'catatan_rules')) {
+
+            // If data not pass the validation, page will back to user page with error from validation
+            return redirect()->back()->withInput();
+        }
+
+        // If data pass the validation, save data to database
+        $this->catatanModel->save($catatanData);
+
+        // Prepare flash for sending to sussecc page
+        session()->setFlashdata('success', 'Catatan berhasil disimpan.');
+
+        // Back to anggota page with flashdata
+        return redirect()->to('anggota');
+    }
+
     public function uploadImgArticle()
     {
         $img = $this->request->getFile('img');

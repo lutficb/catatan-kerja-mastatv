@@ -1,9 +1,9 @@
  <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
          <a class="navbar-brand brand-logo" href="<?= base_url(); ?>">
-             <img src="<?= base_url(); ?>/img/logo-mastatv-light.svg" alt="logo" class="logo-dark" />
+             <img src="<?= base_url(); ?>img/logo-mastatv-light.svg" alt="logo" class="logo-dark" />
          </a>
-         <a class="navbar-brand brand-logo-mini" href="<?= base_url(); ?>"><img src="<?= base_url(); ?>/img/logo-mastatv-light.svg" alt="logo" /></a>
+         <a class="navbar-brand brand-logo-mini" href="<?= base_url(); ?>"><img src="<?= base_url(); ?>img/logo-mastatv-light.svg" alt="logo" /></a>
          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
              <span class="icon-menu"></span>
          </button>
@@ -13,7 +13,7 @@
          <ul class="navbar-nav navbar-nav-right">
              <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
                  <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                     <img class="img-xs rounded-circle ms-2" src="<?= base_url(); ?>/img/<?= auth()->user()->photo; ?>" alt="Profile image"> <span class="font-weight-normal"><?= auth()->user()->name; ?></span></a>
+                     <img class="img-xs rounded-circle ms-2" src="<?= base_url(); ?>img/<?= auth()->user()->photo; ?>" alt="Profile image"> <span class="font-weight-normal"><?= auth()->user()->name; ?></span></a>
                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                      <div class="dropdown-header text-center">
                          <img class="img-md img-fluid rounded-circle" src="<?= base_url(); ?>img/<?= auth()->user()->photo; ?>" alt="Profile image">

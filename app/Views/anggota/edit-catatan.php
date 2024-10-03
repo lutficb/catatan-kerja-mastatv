@@ -50,14 +50,15 @@
                         </div>
                     <?php endif ?>
 
-                    <?= form_open('anggota/tambah-catatan-baru', 'class="sample-form"') ?>
+                    <?php $action = 'anggota/edit-catatan/' . $catatan['id']; ?>
+                    <?= form_open($action, 'class="sample-form"') ?>
                     <div class="form-group row">
                         <?php
                         $useridData = [
                             'type' => 'hidden',
                             'name' => 'user_id',
                             'id' => 'user_id',
-                            'value' => auth()->user()->id,
+                            'value' => $catatan['id'],
                             'class' => 'form-control form-control-sm'
                         ];
                         echo form_input($useridData);
@@ -71,7 +72,7 @@
                                 'type'  => 'date',
                                 'name'  => 'waktu_catatan',
                                 'id'    => 'waktu_catatan',
-                                'value' => old('waktu_catatan'),
+                                'value' => old('waktu_catatan', date('Y-m-d', strtotime($catatan['waktu_catatan']))),
                                 'class' => 'form-control form-control-sm',
                             ];
                             echo form_input($tanggalData);
@@ -81,19 +82,19 @@
                     <div class="form-group row">
                         <?= form_label('Deskripsi Pekerjaan', 'note', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-8">
-                            <textarea class="form-control" name="note" id="note" value="<?= old('note'); ?>"></textarea>
+                            <textarea class="form-control" name="note" id="note"><?= old('note', $catatan['deskripsi_catatan']); ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <?= form_label('Permasalahan', 'note_problem', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-8">
-                            <textarea class="form-control" name="note_problem" id="note_problem" value="<?= old('note_problem'); ?>"></textarea>
+                            <textarea class="form-control" name="note_problem" id="note_problem"><?= old('note_problem', $catatan['deskripsi_permasalahan']); ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <?= form_label('Solusi', 'solution', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-8">
-                            <textarea class="form-control" name="solution" id="solution" value="<?= old('solution'); ?>"></textarea>
+                            <textarea class="form-control" name="solution" id="solution"><?= old('solution', $catatan['deskripsi_solusi']); ?></textarea>
                         </div>
                     </div>
                     <div class="">
@@ -116,7 +117,7 @@
     $(document).ready(function() {
         $('#note').summernote({
             dialogsInBody: true,
-            minHeight: 170,
+            minHeight: 120,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear', 'italic']],
@@ -141,7 +142,7 @@
 
         $('#note_problem').summernote({
             dialogsInBody: true,
-            minHeight: 170,
+            minHeight: 120,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear', 'italic']],
@@ -166,7 +167,7 @@
 
         $('#solution').summernote({
             dialogsInBody: true,
-            minHeight: 170,
+            minHeight: 120,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear', 'italic']],
