@@ -23,7 +23,7 @@
 
 <?= $this->section('main'); ?>
 <div class="row">
-    <div class="col-xl-4 grid-margin stretch-card">
+    <div class="col-xl-3 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <div class="d-sm-flex mb-4 align-items-center">
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-8 grid-margin stretch-card">
+    <div class="col-xl-9 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title"><?= $rightsubtitle; ?></h4>

@@ -4,13 +4,10 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CatatanModel;
-use CodeIgniter\HTTP\ResponseInterface;
-use Faker\Provider\Uuid;
 
 class Anggota extends BaseController
 {
     protected $catatanModel;
-    protected $helper = ['form'];
 
     public function __construct()
     {
@@ -19,16 +16,34 @@ class Anggota extends BaseController
 
     public function index()
     {
+        // Get id from logged user
         $userId = auth()->user()->id;
+
+        // Get all data catatan form database
+        $catatan = $this->catatanModel->getAllCatatan($userId);
+
+        // Give color to badge in status
+        $colorStatus = [
+            'unchecked' => 'badge-warning',
+            'checked' => 'badge-success'
+        ];
+
+        // Change status name
+        $statusPekerjaan = [
+            'unchecked' => 'Belum Diperiksa',
+            'checked' => 'Diperiksa'
+        ];
 
         // prepare data for default Anggota's page
         $data = [
             'title' => 'Catatan Kerja Saya',
             'leftsubtitle' => 'Statistik',
             'rightsubtitle' => 'Daftar Catatan Kerja',
-            'catatan' => $this->catatanModel->getAllCatatan($userId),
+            'catatan' => $catatan,
+            'badge' => $colorStatus,
+            'status' => $statusPekerjaan,
         ];
- 
+
         return view('anggota/main', $data);
     }
 

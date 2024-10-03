@@ -35,6 +35,11 @@ class Catatan extends Migration
                 'type'              => 'TEXT',
                 'null'              => true,
             ],
+            'status' => [
+                'type'       => 'ENUM',
+                'constraint' => ['checked', 'unchecked'],
+                'default'    => 'unchecked',
+            ],
             'created_at' => [
                 'type'              => 'DATETIME',
                 'null'              => true
