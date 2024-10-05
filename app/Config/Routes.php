@@ -2,6 +2,7 @@
 
 use App\Controllers\Users;
 use App\Controllers\Anggota;
+use App\Controllers\Verificator;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -17,6 +18,11 @@ $routes->group('admin', ['filter' => 'group:admin'], function ($routes) {
     $routes->post('users', [Users::class, 'index']);
     $routes->get('activateUser/(:segment)', [Users::class, 'activateUser']);
     $routes->get('deleteUser/(:segment)', [Users::class, 'deleteUser']);
+});
+
+// Route Verificator, only user in group admin and verificator can access
+$routes->group('verificator', ['filter' => 'group:verificator,admin'], function ($routes) {
+    $routes->get('/', [Verificator::class, 'index']);
 });
 
 // Route Anggota, only user in group anggota can access
