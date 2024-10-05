@@ -22,16 +22,16 @@ class Anggota extends BaseController
         // Get all data catatan form database
         $catatan = $this->catatanModel->getAllCatatan($userId);
 
-        // Give color to badge in status
-        $colorStatus = [
-            'unchecked' => 'badge-warning',
-            'checked' => 'badge-success'
-        ];
-
-        // Change status name
-        $statusPekerjaan = [
-            'unchecked' => 'Belum Diperiksa',
-            'checked' => 'Diperiksa'
+        // Give color to badge in status and Change status name
+        $status = [
+            'badge' => [
+                'unchecked' => 'badge-warning',
+                'checked' => 'badge-success'
+            ],
+            'pekerjaan' => [
+                'unchecked' => 'Belum Diperiksa',
+                'checked' => 'Diperiksa'
+            ],
         ];
 
         // prepare data for default Anggota's page
@@ -40,8 +40,7 @@ class Anggota extends BaseController
             'leftsubtitle' => 'Statistik',
             'rightsubtitle' => 'Daftar Catatan Kerja',
             'catatan' => $catatan,
-            'badge' => $colorStatus,
-            'status' => $statusPekerjaan,
+            'status' => $status,
         ];
 
         return view('anggota/main', $data);

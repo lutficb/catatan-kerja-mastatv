@@ -51,13 +51,13 @@
                                     </td>
                                     <td><?= ringkasKalimat($item['deskripsi_catatan'], 5) . '...'; ?></td>
                                     <td class="text-center">
-                                        <div class="badge p-2 <?= $badge[$item['status']]; ?>">
-                                            <?= $status[$item['status']]; ?>
+                                        <div class="badge p-2 <?= $status['badge'][$item['status']]; ?>">
+                                            <?= $status['pekerjaan'][$item['status']]; ?>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="edit-user" style="display: inline;">
-                                            <a href="<?= base_url(); ?>anggota/edit-catatan/<?= $item['id']; ?>" class="btn btn-sm btn-info" title="Edit catatan"><i class="fa fa-edit"></i></a>
+                                            <a href="<?= base_url(); ?>anggota/edit-catatan/<?= $item['id']; ?>" class="btn btn-sm btn-info <?php ($item['status'] == 'checked') ? 'disabled' : ''; ?>" title="Edit catatan"><i class="fa fa-edit"></i></a>
                                         </div>
                                     </td>
                                 </tr>

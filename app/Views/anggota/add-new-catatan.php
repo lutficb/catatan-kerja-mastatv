@@ -81,19 +81,19 @@
                     <div class="form-group row">
                         <?= form_label('Deskripsi Pekerjaan', 'note', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-8">
-                            <textarea class="form-control" name="note" id="note" value="<?= old('note'); ?>"></textarea>
+                            <textarea class="form-control" name="note" id="note"><?= old('note'); ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <?= form_label('Permasalahan', 'note_problem', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-8">
-                            <textarea class="form-control" name="note_problem" id="note_problem" value="<?= old('note_problem'); ?>"></textarea>
+                            <textarea class="form-control" name="note_problem" id="note_problem"><?= old('note_problem'); ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <?= form_label('Solusi', 'solution', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-8">
-                            <textarea class="form-control" name="solution" id="solution" value="<?= old('solution'); ?>"></textarea>
+                            <textarea class="form-control" name="solution" id="solution"><?= old('solution'); ?></textarea>
                         </div>
                     </div>
                     <div class="">
