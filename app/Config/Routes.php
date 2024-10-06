@@ -18,6 +18,8 @@ $routes->group('admin', ['filter' => 'group:admin'], function ($routes) {
     $routes->post('users', [Users::class, 'index']);
     $routes->get('activateUser/(:segment)', [Users::class, 'activateUser']);
     $routes->get('deleteUser/(:segment)', [Users::class, 'deleteUser']);
+    $routes->get('jobdes', [Users::class, 'jobdesUser']);
+    $routes->post('jobdes', [Users::class, 'jobdesUser']);
 });
 
 // Route Verificator, only user in group admin and verificator can access

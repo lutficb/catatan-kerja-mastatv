@@ -25,11 +25,15 @@ class UserModel extends ShieldUserModel
         $builder->select('users.id as userId, name, group, active');
         $builder->join('auth_groups_users', 'auth_groups_users.user_id = users.id');
         $result = $builder->get()->getResultArray();
+
         return $result;
     }
 
-    public function addUser()
+    public function getAllJobdes()
     {
-        $builder = auth()->getProvider();
+        $builder = $this->db->table('jobdes');
+        $result = $builder->get()->getResultArray();
+
+        return $result;
     }
 }

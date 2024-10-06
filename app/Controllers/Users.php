@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\JobdesModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\UserModel;
 use CodeIgniter\Shield\Entities\User;
@@ -10,11 +11,12 @@ use CodeIgniter\Shield\Entities\User;
 class Users extends BaseController
 {
     protected $userModel;
-    protected $helpers = ["form"];
+    protected $jobdesModel;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->jobdesModel = new JobdesModel();
     }
 
     public function index()
@@ -103,5 +105,44 @@ class Users extends BaseController
         session()->setFlashdata('message', 'User berhasil dihapus');
 
         return redirect()->to('admin/users');
+    }
+
+    public function jobdesUser()
+    {
+        // Get All jobdes from database
+        $jobdes = $this->jobdesModel->findAll();
+
+        $data = [
+            'title' => 'Halaman Job Deskripsi',
+            'leftsubtitle' => 'Jobdes Baru',
+            'rightsubtitle' => 'Daftar Jobdes',
+            'jobdes' => $jobdes,
+        ];
+        // Check if the request from user is post method or not
+        if (! $this->request->is('post')) {
+            return view('admin/jobdes', $data);
+        }
+
+        // Catch data from input user or from post methon
+        $jobdesData = [
+            'name' => $this->request->getPost('name'),
+            'deskripsi'  => $this->request->getPost('deskripsi'),
+        ];
+
+        // Check if data form users is match with validation rules. Rules saved in Config/Validation
+        if (!$this->validateData($jobdesData, 'jobdes_rules')) {
+
+            // If data not pass the validation, page will back to user page with error from validation
+            return redirect()->back()->withInput();
+        }
+
+        // Save data jobdes
+        $this->jobdesModel->save($jobdesData);
+
+        // Persiapkan data session untuk dikirim ke halaman
+        session()->setFlashdata('success', 'Jobdes baru berhasil ditambahkan.');
+
+        // Back to users page with message success input data
+        return redirect()->to('admin/jobdes');
     }
 }

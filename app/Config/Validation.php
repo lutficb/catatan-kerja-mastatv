@@ -156,4 +156,32 @@ class Validation extends BaseConfig
             ],
         ],
     ];
+
+    //--------------------------------------------------------------------
+    // Rules For Add New Jobdes
+    //--------------------------------------------------------------------
+    public $jobdes_rules = [
+        'name' => [
+            'label'  => 'Nama Jobdes',
+            'rules'  => [
+                'required',
+                'max_length[30]',
+            ],
+            'errors' => [
+                'required' => '{field} harus diisi',
+                'max_length' => '{field} is too long.',
+            ],
+        ],
+        'deskripsi' => [
+            'label' => 'Deskripsi Jobdes',
+            'rules' => [
+                'required',
+                'min_length[5]'
+            ],
+            'errors' => [
+                'required' => '{field} harus diisi',
+                'min_length' => '{field} terlalu singkat, belum dapat menggambarkan pekerjaan yang dimaksud',
+            ],
+        ],
+    ];
 }
