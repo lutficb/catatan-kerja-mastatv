@@ -24,7 +24,7 @@ class CatatanModel extends Model
     public function getAllCatatan($userId)
     {
         $builder = $this->db->table('catatan');
-        $builder->getWhere(['user_id' => $userId]);
+        $builder->where('user_id', $userId);
         $result = $builder->get()->getResultArray();
 
         return $result;
