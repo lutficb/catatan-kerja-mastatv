@@ -37,7 +37,7 @@
                                             <?= formatTanggalIndo($item['waktu_catatan']); ?>
                                         </div>
                                     </td>
-                                    <td><?= $item['name']; ?></td>
+                                    <td><?= $item['userName']; ?>/ <span class="font-weight-bold"><?= $item['jobdes']; ?></span></td>
                                     <td class="text-center">
                                         <div class="badge p-2 <?= $status['badge'][$item['status_catatan']]; ?>">
                                             <?= $status['pekerjaan'][$item['status_catatan']]; ?>

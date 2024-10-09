@@ -30,11 +30,14 @@ class CatatanModel extends Model
         return $result;
     }
 
-    public function getAlCatatanForVerificator()
+    public function getAllCatatanForVerificator()
     {
         $builder = $this->db->table('catatan');
-        $builder->select('catatan.id as catatanId, user_id, waktu_catatan, catatan.status as status_catatan, name, photo');
+        $builder->select('catatan.id as catatanId
+        , waktu_catatan, catatan.status as status_catatan, users.name as userName, photo, jobdes.name as jobdes');
         $builder->join('users', 'users.id = catatan.user_id');
+        $builder->join('users_jobdes', 'users_jobdes.user_id = users.id');
+        $builder->join('jobdes', 'jobdes.id = users_jobdes.job_id');
         $result = $builder->get()->getResultArray();
 
         return $result;

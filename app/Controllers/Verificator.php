@@ -19,7 +19,7 @@ class Verificator extends BaseController
     public function index()
     {
         // Get data catatan from table
-        $catatan = $this->catatanModel->getAlCatatanForVerificator();
+        $catatan = $this->catatanModel->getAllCatatanForVerificator();
 
         // Give color to badge in status and Change status name
         $status = [

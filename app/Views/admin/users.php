@@ -126,7 +126,7 @@
                                     </td>
                                     <td>
                                         <div class="edit-user" style="display: inline;">
-                                            <a href="" class="btn btn-sm btn-primary" title="Edit data pengguna"><i class="fa fa-edit"></i></a>
+                                            <a href="<?= base_url(); ?>admin/edit-user/<?= $user['userId']; ?> " class="btn btn-sm btn-primary" title="Edit data pengguna"><i class="fa fa-edit"></i></a>
                                         </div>
                                         <div class="delete-user" style="display: inline;">
                                             <a href="<?= base_url(); ?>admin/deleteUser/<?= $user['userId']; ?>" class="btn btn-sm btn-danger" title="Hapus pengguna"><i class="fa fa-trash-o"></i></a>
@@ -191,12 +191,4 @@
     </div>
 </div>
 
-<!-- <script>
-    const myModal = document.getElementById('myModal')
-    const myInput = document.getElementById('myInput')
-
-    myModal.addEventListener('shown.bs.modal', () => {
-        myInput.focus()
-    })
-</script> -->
 <?= $this->endSection(); ?>
