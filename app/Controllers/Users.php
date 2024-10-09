@@ -145,4 +145,106 @@ class Users extends BaseController
         // Back to users page with message success input data
         return redirect()->to('admin/jobdes');
     }
+
+    public function editUser($userId)
+    {
+        // Get user by id
+        $user = auth()->getProvider()->findById($userId);
+
+        // Get user jobdes
+        $userJobdes = $this->jobdesModel->getUserJobdes($userId);
+
+        // Get jobdes data
+        $jobdes = $this->jobdesModel->findAll();
+
+        // Get user group
+        $group = $user->getGroups();
+
+        // List of available group
+        $lists = [
+            'admin' => 'Admin',
+            'verificator' => 'Verificator',
+            'anggota' => 'Anggota',
+        ];
+
+        // Array of data send to view
+        $data = [
+            'title' => 'Halaman Edit User',
+            'subtitle' => 'Perbarui Data User',
+            'user' => $user,
+            'group' => $group,
+            'lists' => $lists,
+            'jobdes' => $jobdes,
+            'userJobdes' => $userJobdes,
+        ];
+
+        return view('admin/edit-user', $data);
+    }
+
+    public function updateUserAction($userId)
+    {
+        // Get data from post method
+        $postData = [
+            'oldGroup' => $this->request->getPost('oldgroup'),
+            'newGroup' => $this->request->getPost('group'),
+            'name' => $this->request->getPost('name')
+        ];
+
+        // Get the User Provider (UserModel by default)
+        $users = auth()->getProvider();
+
+        $user = $users->findById($userId);
+        $user->fill([
+            'name' => $postData['name'],
+        ]);
+        $users->save($user);
+
+        if ($postData['oldGroup'] != $postData['newGroup']) {
+            // Remove old group
+            $user->removeGroup($postData['oldGroup']);
+
+            // Add new group
+            $user->addGroup($postData['newGroup']);
+        }
+
+        // Persiapkan data session untuk dikirim ke halaman
+        session()->setFlashdata('success', 'Data user berhasil diubah.');
+
+        // Back to users page with message success input data
+        return redirect()->to('admin/edit-user/' . $userId);
+    }
+
+    public function updateJobdesAction($userId)
+    {
+        // Prepare data
+        $jobId = $this->request->getPost('jobdes');
+        // dd($jobId);
+
+        $userjobdes = $this->jobdesModel->getFromUserJobdes($userId);
+        // dd($userjobdes);
+
+        if ($userjobdes) {
+            // Update data
+            $successInsert = $this->jobdesModel->updateUserJobdes($userId, $jobId);
+        } else {
+            // Insert new data
+            $dataToInsert = [
+                'user_id' => $userId,
+                'job_id' => $jobId,
+            ];
+
+            $successInsert = $this->jobdesModel->addJobdesToUser($dataToInsert);
+        }
+
+        if ($successInsert < 1) {
+            // Persiapkan data session untuk dikirim ke halaman
+            session()->setFlashdata('fail', 'Jobdes gagal disimpan.');
+        } else {
+            // Persiapkan data session untuk dikirim ke halaman
+            session()->setFlashdata('success', 'Jobdes berhasil disimpan.');
+        }
+
+        // Back to users page with message success input data
+        return redirect()->to('admin/edit-user/' . $userId);
+    }
 }

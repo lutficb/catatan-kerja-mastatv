@@ -20,6 +20,9 @@ $routes->group('admin', ['filter' => 'group:admin'], function ($routes) {
     $routes->get('deleteUser/(:segment)', [Users::class, 'deleteUser']);
     $routes->get('jobdes', [Users::class, 'jobdesUser']);
     $routes->post('jobdes', [Users::class, 'jobdesUser']);
+    $routes->get('edit-user/(:segment)', [Users::class, 'editUser']);
+    $routes->post('simpan-akun/(:segment)', [Users::class, 'updateUserAction']);
+    $routes->post('simpan-jobdes/(:segment)', [Users::class, 'updateJobdesAction']);
 });
 
 // Route Verificator, only user in group admin and verificator can access
