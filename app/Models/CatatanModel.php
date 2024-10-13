@@ -12,7 +12,7 @@ class CatatanModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'user_id', 'waktu_catatan', 'deskripsi_catatan', 'deskripsi_permasalahan', 'deskripsi_solusi'];
+    protected $allowedFields    = ['id', 'user_id', 'waktu_catatan', 'deskripsi_catatan', 'deskripsi_permasalahan', 'deskripsi_solusi', 'status'];
 
     // Dates
     protected $useTimestamps = true;
@@ -30,15 +30,21 @@ class CatatanModel extends Model
         return $result;
     }
 
-    public function getAllCatatanForVerificator()
+    public function getAllCatatanForVerificator($id = null)
     {
         $builder = $this->db->table('catatan');
         $builder->select('catatan.id as catatanId
-        , waktu_catatan, catatan.status as status_catatan, users.name as userName, photo, jobdes.name as jobdes');
+        , waktu_catatan, deskripsi_catatan, deskripsi_permasalahan, deskripsi_solusi, catatan.status as status_catatan, users.name as userName, photo, jobdes.name as jobdes');
         $builder->join('users', 'users.id = catatan.user_id');
         $builder->join('users_jobdes', 'users_jobdes.user_id = users.id');
         $builder->join('jobdes', 'jobdes.id = users_jobdes.job_id');
-        $result = $builder->get()->getResultArray();
+
+        if (!$id) {
+            $result = $builder->get()->getResultArray();
+        } else {
+            $builder->where('catatan.id', $id);
+            $result = $builder->get()->getRowArray();
+        }
 
         return $result;
     }

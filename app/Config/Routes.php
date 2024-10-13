@@ -28,6 +28,8 @@ $routes->group('admin', ['filter' => 'group:admin'], function ($routes) {
 // Route Verificator, only user in group admin and verificator can access
 $routes->group('verificator', ['filter' => 'group:verificator,admin'], function ($routes) {
     $routes->get('/', [Verificator::class, 'index']);
+    $routes->get('periksa-catatan/(:segment)', [Verificator::class, 'periksaCatatan']);
+    $routes->post('periksa-catatan', [Verificator::class, 'periksaCatatan']);
 });
 
 // Route Anggota, only user in group anggota can access

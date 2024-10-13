@@ -45,7 +45,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="edit-user" style="display: inline;">
-                                            <a href="<?= base_url(); ?>verificator/edit-catatan/<?= $item['catatanId']; ?>" class="btn btn-sm btn-info" title="Periksa catatan"><i class="fa fa-edit"></i></a>
+                                            <a href="<?= base_url(); ?>verificator/periksa-catatan/<?= $item['catatanId']; ?>" class="btn btn-sm btn-info" title="Periksa catatan"><i class="fa fa-edit"></i></a>
                                         </div>
                                         <div class="edit-user" style="display: inline;">
                                             <a href="<?= base_url(); ?>verificator/delete-catatan/<?= $item['catatanId']; ?>" class="btn btn-sm btn-danger" title="Hapus catatan"><i class="fa fa-trash"></i></a>
