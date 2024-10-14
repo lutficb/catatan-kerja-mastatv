@@ -102,6 +102,36 @@ class Anggota extends BaseController
         return redirect()->to('anggota');
     }
 
+    public function detailCatatan($catatanId)
+    {
+        // get data catatan from database
+        $catatan = $this->catatanModel->find($catatanId);
+
+        // Badge status cattaan
+        $status = [
+            'badge' => [
+                'unchecked' => 'badge-warning',
+                'checked' => 'badge-success'
+            ],
+            'title' => [
+                'unchecked' => 'Belum diperiksa',
+                'checked' => 'Sudah diperiksa'
+            ],
+        ];
+
+        // prepare data for default Anggota's page
+        $data = [
+            'title' => 'Detail Catatan Kerja Anggota',
+            'leftsubtitle1' => 'Info Catatan',
+            'leftsubtitle2' => 'Detail Catatan',
+            'rightsubtitle' => 'Aksi',
+            'catatan' => $catatan,
+            'status' => $status,
+        ];
+
+        return view('anggota/detail-catatan', $data);
+    }
+
     public function editCatatan($catatanId)
     {
         // get data catatan from database

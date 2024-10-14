@@ -99,7 +99,7 @@
                     </div>
                     <div class="">
                         <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
-                        <a href="<?= base_url(); ?>anggota/" class="btn btn-secondary"><i class="fa fa-times"></i> Batal</a>
+                        <button onclick="window.history.go(-1); return false;" class="btn btn-secondary"><i class="fa fa-times"></i> Batal</button>
                     </div>
                     <?= form_close(); ?>
                 </div>

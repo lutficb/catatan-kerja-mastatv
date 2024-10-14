@@ -22,7 +22,7 @@
                         <td><?= $jobdes['jobname']; ?></td>
                     </tr>
                     <tr>
-                        <td><label class="badge badge-info">Total Pekerjaan</label></td>
+                        <td><label class="badge badge-danger">Total Pekerjaan</label></td>
                         <td>:</td>
                         <td><?= $total; ?></td>
                     </tr>
@@ -37,29 +37,6 @@
                         <td><?= $unchecked; ?></td>
                     </tr>
                 </table>
-                <!-- <div class="row">
-                    <div class="col-xl-4 font-weight-bold">
-                        <p>Nama</p>
-                        <p>Jobdes</p>
-                        <p>Total Pekerjaan</p>
-                        <p>Diperiksa</p>
-                        <p>Belum Diperiksa</p>
-                    </div>
-                    <div class="col-xl-1">
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                        <p>:</p>
-                    </div>
-                    <div class="col-xl-7">
-                        <p><?= auth()->getUser()->name; ?></p>
-                        <p><?= $jobdes['jobname']; ?></p>
-                        <p><?= $total; ?></p>
-                        <p><?= $checked; ?></p>
-                        <p><?= $unchecked; ?></p>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -103,7 +80,7 @@
                                     </td>
                                     <td>
                                         <div class="edit-user" style="display: inline;">
-                                            <a href="<?= base_url(); ?>anggota/edit-catatan/<?= $item['id']; ?>" class="btn btn-sm btn-info <?php ($item['status'] == 'checked') ? 'disabled' : ''; ?>" title="Edit catatan"><i class="fa fa-edit"></i></a>
+                                            <a href="<?= base_url(); ?>anggota/detail-catatan/<?= $item['id']; ?>" class="btn btn-sm btn-info" title="Detail catatan"><i class="fa fa-folder-open-o"></i></a>
                                         </div>
                                     </td>
                                 </tr>
