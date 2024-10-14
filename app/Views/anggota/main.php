@@ -6,18 +6,64 @@
 
 <?= $this->section('main'); ?>
 <div class="row">
-    <div class="col-xl-3 grid-margin stretch-card">
+    <div class="col-xl-4 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="d-sm-flex mb-4 align-items-center">
-                    <h4 class="card-title mb-0"><?= $leftsubtitle; ?></h4>
-                </div>
-                <div class="d-flex py-3 border-bottom">
-                </div>
+                <h4 class="card-title"><?= $leftsubtitle; ?></h4>
+                <table class="table">
+                    <tr>
+                        <td><span class="font-weight-bold">Nama</span></td>
+                        <td>:</td>
+                        <td><?= auth()->getUser()->name; ?></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-weight-bold">Jobdes</span></td>
+                        <td>:</td>
+                        <td><?= $jobdes['jobname']; ?></td>
+                    </tr>
+                    <tr>
+                        <td><label class="badge badge-info">Total Pekerjaan</label></td>
+                        <td>:</td>
+                        <td><?= $total; ?></td>
+                    </tr>
+                    <tr>
+                        <td><label class=" badge badge-success">Sudah Diperiksa</label></td>
+                        <td>:</td>
+                        <td><?= $checked; ?></td>
+                    </tr>
+                    <tr>
+                        <td><label class="badge badge-warning">Belum Diperiksa</label></td>
+                        <td>:</td>
+                        <td><?= $unchecked; ?></td>
+                    </tr>
+                </table>
+                <!-- <div class="row">
+                    <div class="col-xl-4 font-weight-bold">
+                        <p>Nama</p>
+                        <p>Jobdes</p>
+                        <p>Total Pekerjaan</p>
+                        <p>Diperiksa</p>
+                        <p>Belum Diperiksa</p>
+                    </div>
+                    <div class="col-xl-1">
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                        <p>:</p>
+                    </div>
+                    <div class="col-xl-7">
+                        <p><?= auth()->getUser()->name; ?></p>
+                        <p><?= $jobdes['jobname']; ?></p>
+                        <p><?= $total; ?></p>
+                        <p><?= $checked; ?></p>
+                        <p><?= $unchecked; ?></p>
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>
-    <div class="col-xl-9 grid-margin stretch-card">
+    <div class="col-xl-8 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title"><?= $rightsubtitle; ?></h4>

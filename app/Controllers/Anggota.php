@@ -22,6 +22,18 @@ class Anggota extends BaseController
         // Get all data catatan form database
         $catatan = $this->catatanModel->getAllCatatan($userId);
 
+        // Get users jobdes
+        $jobdes = $this->catatanModel->getUserJobdes($userId);
+
+        // Get Total Catatan
+        $total = $this->catatanModel->getTotalCatatan($userId);
+
+        // Get total catatan checked
+        $checked = $this->catatanModel->getTotalCatatan($userId, 'checked');
+
+        // Get total catatan unchecked
+        $unchecked = $this->catatanModel->getTotalCatatan($userId, 'unchecked');
+
         // Give color to badge in status and Change status name
         $status = [
             'badge' => [
@@ -41,6 +53,10 @@ class Anggota extends BaseController
             'rightsubtitle' => 'Daftar Catatan Kerja',
             'catatan' => $catatan,
             'status' => $status,
+            'jobdes' => $jobdes,
+            'total' => $total['total'],
+            'checked' => $checked['total'],
+            'unchecked' => $unchecked['total'],
         ];
 
         return view('anggota/main', $data);
