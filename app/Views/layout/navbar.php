@@ -9,7 +9,7 @@
          </button>
      </div>
      <div class="navbar-menu-wrapper d-flex align-items-center">
-         <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Ahlan wa sahlan, <?= auth()->user()->name; ?></h5>
+         <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Ahlan wa sahlan</h5>
          <ul class="navbar-nav navbar-nav-right">
              <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
                  <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -20,7 +20,6 @@
                          <p class="mb-1 mt-3"><?= auth()->user()->username; ?></p>
                          <p class="font-weight-light text-muted mb-0"><?= auth()->user()->email; ?></p>
                      </div>
-                     <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-success"></i> My Profile</a>
                      <a href="<?= base_url('logout') ?>" class="dropdown-item"><i class="dropdown-item-icon icon-power text-success"></i>Sign Out</a>
                  </div>
              </li>
