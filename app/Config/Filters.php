@@ -124,11 +124,10 @@ class Filters extends BaseFilters
             ]
         ],
 
-        // 'session' => [
-        //     'before' => [
-        //         'admin/*',
-        //         '/'
-        //     ],
-        // ],
+        'session' => [
+            'before' => [
+                'profil*',
+            ],
+        ],
     ];
 }

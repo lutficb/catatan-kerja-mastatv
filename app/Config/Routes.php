@@ -2,6 +2,7 @@
 
 use App\Controllers\Users;
 use App\Controllers\Anggota;
+use App\Controllers\Profil;
 use App\Controllers\Verificator;
 use CodeIgniter\Router\RouteCollection;
 
@@ -42,6 +43,11 @@ $routes->group('anggota', ['filter' => 'group:anggota'], function ($routes) {
     $routes->get('detail-catatan/(:segment)', [Anggota::class, 'detailCatatan']);
     $routes->get('edit-catatan/(:segment)', [Anggota::class, 'editCatatan']);
     $routes->post('edit-catatan/(:segment)', [Anggota::class, 'editCatatan']);
+});
+
+// Route Profil Page, all gorup of user can access
+$routes->group('profil', function ($routes) {
+    $routes->get('/', [Profil::class, 'index']);
 });
 
 service('auth')->routes($routes);

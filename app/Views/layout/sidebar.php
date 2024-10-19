@@ -47,5 +47,16 @@
                 </a>
             </li>
         <?php endif; ?>
+
+        <!-- My Profil menu to edit profil and detail user -->
+        <li class="nav-item nav-category">
+            <span class="nav-link">Profil</span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?= base_url(); ?>profil">
+                <span class="menu-title">Profil Saya</span>
+                <i class="icon-user-following menu-icon"></i>
+            </a>
+        </li>
     </ul>
 </nav>
