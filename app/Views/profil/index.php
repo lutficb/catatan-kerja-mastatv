@@ -42,7 +42,7 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-xl-12">
-                        <a href="" class="btn btn-success btn-sm btn-icon-text"><i class="icon-pencil btn-icon-prepend"></i> Edit Akun</a>
+                        <a href="<?= base_url(); ?>profil/edit-akun" class="btn btn-success btn-sm btn-icon-text"><i class="icon-pencil btn-icon-prepend"></i> Edit Akun</a>
                     </div>
                 </div>
             </div>
@@ -65,35 +65,44 @@
                     <div class="alert alert-danger" role="alert"><?= session('pribadi-fail') ?></div>
                 <?php endif ?>
 
-                <div>
-                    <table class="table">
-                        <tr>
-                            <td><span class="font-weight-bold">Tanggal Lahir</span></td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><span class="font-weight-bold">Kota/ Kabupaten Lahir</span></td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><span class="font-weight-bold">Alamat Domisili</span></td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><span class="font-weight-bold">No. HP Aktif</span></td>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-xl-12">
-                        <a href="" class="btn btn-success btn-sm btn-icon-text"><i class="icon-pencil btn-icon-prepend"></i> Edit Info Pribadi</a>
+                <?php if (!$user): ?>
+                    <p>Informasi pribadi belum ada, klik tombol berikut untuk menambah informasi pribadi</p>
+                    <div class="row justify-content-center">
+                        <div class="col-xl-4 d-grid gap-2">
+                            <a href="<?= base_url(); ?>profil/tambah-informasi-pribadi" class="btn btn-warning btn-rounded btn-rounded btn-icon-text"><i class="icon-plus btn-icon-prepend"></i> Tambah Informasi Pribadi</a>
+                        </div>
                     </div>
-                </div>
+                <?php else: ?>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <td><span class="font-weight-bold">Tanggal Lahir</span></td>
+                                <td>:</td>
+                                <td><?= formatTanggalIndo($user['tanggal_lahir']); ?></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-weight-bold">Kota/ Kabupaten Lahir</span></td>
+                                <td>:</td>
+                                <td><?= $user['tempat_lahir']; ?></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-weight-bold">Alamat Domisili</span></td>
+                                <td>:</td>
+                                <td><?= $user['alamat']; ?></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-weight-bold">No. HP Aktif</span></td>
+                                <td>:</td>
+                                <td><?= $user['no_hp']; ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-xl-12">
+                            <a href="<?= base_url(); ?>profil/edit-pribadi" class="btn btn-success btn-sm btn-icon-text"><i class="icon-pencil btn-icon-prepend"></i> Edit Info Pribadi</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -109,7 +118,7 @@
 
                 <div class="row justify-content-center">
                     <div class="col-xl-4 d-grid gap-2">
-                        <a href="" class="btn btn-danger btn-icon-text"><i class="icon-compass btn-icon-prepend"></i> Ganti Password</a>
+                        <a href="" class="btn btn-danger btn-rounded btn-icon-text"><i class="icon-compass btn-icon-prepend"></i> Ganti Password</a>
                     </div>
                 </div>
 

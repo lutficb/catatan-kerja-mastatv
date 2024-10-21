@@ -48,6 +48,12 @@ $routes->group('anggota', ['filter' => 'group:anggota'], function ($routes) {
 // Route Profil Page, all gorup of user can access
 $routes->group('profil', function ($routes) {
     $routes->get('/', [Profil::class, 'index']);
+    $routes->get('edit-akun', [Profil::class, 'editAkun']);
+    $routes->post('edit-akun', [Profil::class, 'editAkun']);
+    $routes->get('edit-pribadi', [Profil::class, 'editDetailAkun']);
+    $routes->post('edit-pribadi', [Profil::class, 'editDetailAkun']);
+    $routes->get('tambah-informasi-pribadi', [Profil::class, 'addDetailAkun']);
+    $routes->post('tambah-informasi-pribadi', [Profil::class, 'addDetailAkun']);
 });
 
 service('auth')->routes($routes);

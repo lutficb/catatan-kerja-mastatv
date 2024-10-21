@@ -184,4 +184,60 @@ class Validation extends BaseConfig
             ],
         ],
     ];
+
+    //--------------------------------------------------------------------
+    // Rules For Add New Informasi
+    //---------------------------------------------------------------------
+    public $pribadi_rules = [
+        'tempat_lahir' => [
+            'label' => 'Kota/ Kabupaten Tempat Lahir',
+            'rules' => [
+                'required',
+                'min_length[3]',
+                'max_length[100]'
+            ],
+            'errors' => [
+                'required' => '{field} harus diisi',
+                'min_length' => '{field} terlalu pendek. Tidak ada kota/Kabupaten di Indonesia yang namanya kurang dari 3 karakter',
+                'max_length' => '{field} terlalu panjang. Tidak ada kota/Kabupaten di Indonesia yang namanya lebih dari 100 karakter'
+            ],
+        ],
+        'tanggal_lahir' => [
+            'label' => 'Tanggal Lahir',
+            'rules' => [
+                'required',
+            ],
+            'errors' => [
+                'required' => '{field} harus diisi'
+            ],
+        ],
+        'alamat' => [
+            'label' => 'Alamat Domisili',
+            'rules' => [
+                'required',
+                'min_length[5]',
+                'max_length[150]',
+            ],
+            'errors' => [
+                'required' => '{field} harus diisi',
+                'min_length' => '{field} terlalu pendak. Alamat wajib diisi lengkap mulai nama jalan, desa, kecamatan, kabupaten dan provinsi',
+                'max_length' => '{field} terlalu panjang. Alamat terlalu panjang cukup ditulis nama jalan, desa, kecamatan, kabupaten dan provinsi',
+            ],
+        ],
+        'no_hp' => [
+            'label' => 'Nomor HP Aktif',
+            'rules' => [
+                'required',
+                'numeric',
+                'min_length[8]',
+                'max_length[20]',
+            ],
+            'errors' => [
+                'required' => '{field} harus diisi',
+                'numeric' => '{field} tidak boleh ada karakter lain selain angka 0-9',
+                'min_length[8]' => '{field} minimal 8 karakter. Jika terlalu pendek bukan format nomer HP Indonesia',
+                'max_length[20]' => '{field} maksimal 20 karakter. Jika terlalu panjang bukan format nomer HP Indonesia',
+            ],
+        ],
+    ];
 }

@@ -36,4 +36,42 @@ class UserModel extends ShieldUserModel
 
         return $result;
     }
+
+    public function getUserDetail($userid)
+    {
+        $builder = $this->db->table('users_detail');
+        $builder->select('*')->where('user_id', $userid);
+        $result = $builder->get()->getRowArray();
+
+        return $result;
+    }
+
+    public function addUserDetail($data)
+    {
+        $builder = $this->db->table('users_detail');
+        $builder->insert($data);
+
+        if ($this->db->affectedRows() < 1) {
+            $result = false;
+        } else {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function updateUserDetail($id, $data)
+    {
+        $builder = $this->db->table('users_detail');
+        $builder->where('id', $id);
+        $builder->update($data);
+
+        if ($this->db->affectedRows() < 1) {
+            $result = false;
+        } else {
+            $result = true;
+        }
+
+        return $result;
+    }
 }
