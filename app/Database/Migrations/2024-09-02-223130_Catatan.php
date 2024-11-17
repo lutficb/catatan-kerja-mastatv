@@ -20,6 +20,10 @@ class Catatan extends Migration
                 'constraint'        => 11,
                 'unsigned'          => true,
             ],
+            'slug' => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 100,
+            ],
             'waktu_catatan' => [
                 'type'              => 'datetime',
             ],

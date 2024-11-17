@@ -50,18 +50,18 @@
                         </div>
                     <?php endif ?>
 
-                    <?php $action = 'anggota/edit-catatan/' . $catatan['id']; ?>
+                    <?php $action = 'anggota/edit-catatan/' . $catatan['slug']; ?>
                     <?= form_open($action, 'class="sample-form"') ?>
                     <div class="form-group row">
                         <?php
-                        $useridData = [
+                        $catatanidData = [
                             'type' => 'hidden',
-                            'name' => 'user_id',
-                            'id' => 'user_id',
+                            'name' => 'catatan_id',
+                            'id' => 'catatan_id',
                             'value' => $catatan['id'],
                             'class' => 'form-control form-control-sm'
                         ];
-                        echo form_input($useridData);
+                        echo form_input($catatanidData);
                         ?>
                     </div>
                     <div class="form-group row">

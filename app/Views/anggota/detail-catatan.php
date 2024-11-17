@@ -28,7 +28,7 @@
             <div class="card-body">
                 <h4 class="card-title"><?= $rightsubtitle; ?></h4>
                 <div class="d-grid gap-2">
-                    <a href="<?= base_url(); ?>anggota/edit-catatan/<?= $catatan['id']; ?>" class="btn btn-info <?= ($catatan['status'] == 'checked') ? 'disabled' : ''; ?>" title="Edit catatan"><i class="fa fa-edit"> Edit Catatan</i></a>
+                    <a href="<?= base_url(); ?>anggota/edit-catatan/<?= $catatan['slug']; ?>" class="btn btn-info <?= ($catatan['status'] == 'checked') ? 'disabled' : ''; ?>" title="Edit catatan"><i class="fa fa-edit"> Edit Catatan</i></a>
                     <button onclick="window.history.go(-1); return false;" class="btn btn-secondary"><i class="fa fa-arrow-circle-o-left"></i> Kembali</button>
                 </div>
             </div>

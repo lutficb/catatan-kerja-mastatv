@@ -6,7 +6,9 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        // dd(uniqid());
-        return view('welcome_message');
+        $data = [
+            'title' => 'Masta TV Official Website'
+        ];
+        return view('welcome_message', $data);
     }
 }

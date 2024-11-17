@@ -66,9 +66,6 @@
                                 <div class="mt-3 d-grid gap-2">
                                     <button type="submit" class="btn d-grid btn-success btn-lg font-weight-medium auth-form-btn"><?= lang('Auth.login') ?></button>
                                 </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <a href="#" class="auth-link text-black">Lupa password?</a>
-                                </div>
                             </form>
                         </div>
                     </div>

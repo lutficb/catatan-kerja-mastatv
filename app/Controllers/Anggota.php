@@ -79,6 +79,8 @@ class Anggota extends BaseController
         // Catch data from user request form
         $newCatatanData = [
             'user_id' => $this->request->getPost('user_id'),
+            // slug, using for external identify object catatan. Combination of word "catatan" username and uuid
+            'slug' => "catatan-" . auth()->getUser()->username . "-" . uniqid(),
             'waktu_catatan' => $this->request->getPost('waktu_catatan'),
             'deskripsi_catatan' => $this->request->getPost('note'),
             'deskripsi_permasalahan' => $this->request->getPost('note_problem'),
@@ -102,10 +104,10 @@ class Anggota extends BaseController
         return redirect()->to('anggota');
     }
 
-    public function detailCatatan($catatanId)
+    public function detailCatatan($slug)
     {
         // get data catatan from database
-        $catatan = $this->catatanModel->find($catatanId);
+        $catatan = $this->catatanModel->getCatatanBySlug($slug);
 
         // Badge status cattaan
         $status = [
@@ -132,10 +134,10 @@ class Anggota extends BaseController
         return view('anggota/detail-catatan', $data);
     }
 
-    public function editCatatan($catatanId)
+    public function editCatatan($slug)
     {
         // get data catatan from database
-        $catatan = $this->catatanModel->find($catatanId);
+        $catatan = $this->catatanModel->getCatatanBySlug($slug);
 
         // prepare data for "Add New Catatan Kerja" page
         $data = [
@@ -152,7 +154,7 @@ class Anggota extends BaseController
 
         // Catch data from user request form
         $catatanData = [
-            'id' => $catatanId,
+            'id' => $this->request->getPost('catatan_id'),
             'waktu_catatan' => $this->request->getPost('waktu_catatan'),
             'deskripsi_catatan' => $this->request->getPost('note'),
             'deskripsi_permasalahan' => $this->request->getPost('note_problem'),

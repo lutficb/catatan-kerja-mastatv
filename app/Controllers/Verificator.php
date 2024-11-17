@@ -45,10 +45,10 @@ class Verificator extends BaseController
         return view('verificator/index', $data);
     }
 
-    public function periksaCatatan($id = null)
+    public function periksaCatatan($slug = null)
     {
         // Get catatn by id
-        $catatan = $this->catatanModel->getAllCatatanForVerificator($id);
+        $catatan = $this->catatanModel->getAllCatatanForVerificator($slug);
 
         // Chang color ada button disabled according to status
         $state = [

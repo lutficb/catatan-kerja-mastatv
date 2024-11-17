@@ -80,7 +80,7 @@
                                     </td>
                                     <td>
                                         <div class="edit-user" style="display: inline;">
-                                            <a href="<?= base_url(); ?>anggota/detail-catatan/<?= $item['id']; ?>" class="btn btn-sm btn-info" title="Detail catatan"><i class="fa fa-folder-open-o"></i></a>
+                                            <a href="<?= base_url(); ?>anggota/detail-catatan/<?= $item['slug']; ?>" class="btn btn-sm btn-info" title="Detail catatan"><i class="fa fa-folder-open-o"></i></a>
                                         </div>
                                     </td>
                                 </tr>
