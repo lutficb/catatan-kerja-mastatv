@@ -247,4 +247,15 @@ class Users extends BaseController
         // Back to users page with message success input data
         return redirect()->to('admin/edit-user/' . $userId);
     }
+
+    public function userForceResetPassword($id)
+    {
+        $user = auth()->getProvider()->findById($id);
+
+        $user->forcePasswordReset();
+
+        session()->setFlashdata('message', 'Force Reset berhasil diubah');
+
+        return redirect()->to('admin/users');
+    }
 }

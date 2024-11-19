@@ -125,6 +125,9 @@
                                         <div class="badge p-2 <?= ($user['active'] == 1 ? 'badge-info' : 'badge-secondary'); ?>"><?= ($user['active'] == 1 ? 'Aktif' : 'Non-Aktif'); ?></div>
                                     </td>
                                     <td>
+                                        <div class="reset-password" style="display: inline;">
+                                            <a href="<?= base_url(); ?>admin/reset-password/<?= $user['userId']; ?> " class="btn btn-sm btn-warning" title="Force reset password"><i class="fa fa-unlock-alt"></i></a>
+                                        </div>
                                         <div class="edit-user" style="display: inline;">
                                             <a href="<?= base_url(); ?>admin/edit-user/<?= $user['userId']; ?> " class="btn btn-sm btn-primary" title="Edit data pengguna"><i class="fa fa-edit"></i></a>
                                         </div>

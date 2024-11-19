@@ -78,7 +78,8 @@ class Auth extends ShieldAuth
         'register'          => '/',
         'login'             => 'users',
         'logout'            => 'login',
-        'force_reset'       => '/',
+        // 'force_reset'       => '/',
+        'force_reset'       => 'profil/ubah-password',
         'permission_denied' => '/',
         'group_denied'      => '/',
     ];
@@ -153,7 +154,7 @@ class Auth extends ShieldAuth
      * --------------------------------------------------------------------
      * Determines whether users can register for the site.
      */
-    public bool $allowRegistration = false;
+    public bool $allowRegistration = true;
 
     /**
      * --------------------------------------------------------------------

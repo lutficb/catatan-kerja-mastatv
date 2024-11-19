@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\JobdesModel;
 use App\Models\UserModel;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Profil extends BaseController
 {
@@ -29,6 +30,9 @@ class Profil extends BaseController
         // Get user detail
         $user = $this->userModel->getUserDetail($userid);
 
+        // Check if user require force password
+        $require = auth()->user()->requiresPasswordReset();
+
         // Array of data send to view
         $data = [
             'title' => 'Profil Saya',
@@ -37,6 +41,7 @@ class Profil extends BaseController
             'subtitle3' => 'Ganti Password',
             'jobdes' => $jobdes,
             'user' => $user,
+            'require' => $require,
         ];
 
         return view('profil/index', $data);
@@ -201,5 +206,74 @@ class Profil extends BaseController
 
         // Back to users page with message success input data
         return redirect()->to('profil/');
+    }
+
+    public function changePassword()
+    {
+        $data = [
+            'title' => 'Ubah Password',
+            'subtitle1' => 'Form Ubah Password'
+        ];
+        if (auth()->user()->requiresPasswordReset()) {
+            if (! $this->request->is('post')) {
+                return view('profil/ubah-password', $data);
+            }
+
+            if (! $this->validate($this->getValidationRules())) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            }
+
+            $result = auth()->check([
+                'email'    => auth()->user()->email,
+                'password' => $this->request->getPost('old_password'),
+            ]);
+
+            if (!$result->isOK()) {
+                return redirect()->back()->withInput()->with('error', 'Password saat ini salah.');
+            }
+
+            // Success!
+
+            $users = auth()->getProvider();
+
+            $user = auth()->user()->fill([
+                'password' => $this->request->getPost('password')
+            ]);
+
+            $users->save($user);
+
+            // Remove force password reset flag
+            auth()->user()->undoForcePasswordReset();
+
+            // logout user and print login via new password
+            auth()->logout();
+            return redirect()->to('login')
+                ->with('message', 'Password berhasil dirubah. Silahkan login dengan password baru!');
+        }
+
+        // if user login but NOT need requiresPasswordReset
+        throw PageNotFoundException::forPageNotFound();
+    }
+
+    protected function getValidationRules(): array
+    {
+        return setting('Validation.changePassword') ?? [
+            'password' => [
+                'label' => 'Auth.password',
+                'rules' => 'required|strong_password',
+                'errors' => [
+                    'required' => 'Kolom password baru wajib diisi.',
+                    'strong_password' => 'Pawword terlalu lemah. Gunakan yang sedikit lebih kompleks.',
+                ],
+            ],
+            'confirm_password' => [
+                'label' => 'Auth.passwordConfirm',
+                'rules' => 'required|matches[password]',
+                'errors' => [
+                    'required' => 'Kolom konfirmasi password wajib diisi.',
+                    'matches' => 'Konfirmasi password tidak sama dengan kolom password.'
+                ],
+            ],
+        ];
     }
 }

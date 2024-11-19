@@ -114,11 +114,11 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title"><?= $subtitle3; ?></h4>
-                <p>Klik tombol di bawah ini untuk mengganti password akun :</p>
+                <p>Klik tombol di bawah ini untuk mengganti password akun. Jika tombol tidak aktif, hubungi admin untuk memberikan akses.</p>
 
                 <div class="row justify-content-center">
                     <div class="col-xl-4 d-grid gap-2">
-                        <a href="" class="btn btn-danger btn-rounded btn-icon-text"><i class="icon-compass btn-icon-prepend"></i> Ganti Password</a>
+                        <a href="<?= base_url('profil/ubah-password'); ?>" class="btn btn-rounded btn-icon-text <?= ($require) ? 'btn-danger' : 'btn-secondary disabled'; ?>"><i class="icon-compass btn-icon-prepend"></i> Ganti Password</a>
                     </div>
                 </div>
 

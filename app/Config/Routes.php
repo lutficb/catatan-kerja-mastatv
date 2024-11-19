@@ -24,6 +24,7 @@ $routes->group('admin', ['filter' => 'group:admin'], function ($routes) {
     $routes->get('edit-user/(:segment)', [Users::class, 'editUser']);
     $routes->post('simpan-akun/(:segment)', [Users::class, 'updateUserAction']);
     $routes->post('simpan-jobdes/(:segment)', [Users::class, 'updateJobdesAction']);
+    $routes->get('reset-password/(:segment)', [Users::class, 'userForceResetPassword']);
 });
 
 // Route Verificator, only user in group admin and verificator can access
@@ -54,6 +55,8 @@ $routes->group('profil', function ($routes) {
     $routes->post('edit-pribadi', [Profil::class, 'editDetailAkun']);
     $routes->get('tambah-informasi-pribadi', [Profil::class, 'addDetailAkun']);
     $routes->post('tambah-informasi-pribadi', [Profil::class, 'addDetailAkun']);
+    $routes->get('ubah-password', [Profil::class, 'changePassword']);
+    $routes->post('ubah-password', [Profil::class, 'changePassword']);
 });
 
 service('auth')->routes($routes);
