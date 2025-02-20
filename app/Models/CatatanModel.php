@@ -62,6 +62,7 @@ class CatatanModel extends Model
         $builder->join('users', 'users.id = catatan.user_id');
         $builder->join('users_jobdes', 'users_jobdes.user_id = users.id');
         $builder->join('jobdes', 'jobdes.id = users_jobdes.job_id');
+	$builder->orderBy('waktu_catatan', 'DESC');
 
         if (!$slug) {
             $result = $builder->get()->getResultArray();
